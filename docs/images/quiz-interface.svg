@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f0f2f5"/>
+  <!-- Header -->
+  <rect width="800" height="70" fill="#4facfe"/>
+  <text x="30" y="30" font-family="Arial" font-size="12" fill="rgba(255,255,255,0.8)">Web Development Course</text>
+  <text x="30" y="52" font-family="Segoe UI, Arial" font-size="20" font-weight="bold" fill="white">Module 3 Quiz: JavaScript Fundamentals</text>
+  <!-- Timer -->
+  <rect x="650" y="15" width="120" height="40" rx="8" fill="rgba(255,255,255,0.2)"/>
+  <text x="710" y="42" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">14:32</text>
+  <text x="710" y="28" font-family="Arial" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="middle">Time Remaining</text>
+  <!-- Progress Bar -->
+  <rect x="30" y="85" width="740" height="8" rx="4" fill="#e5e7eb"/>
+  <rect x="30" y="85" width="296" height="8" rx="4" fill="#10b981"/>
+  <text x="30" y="110" font-family="Arial" font-size="12" fill="#666">Question 4 of 10</text>
+  <text x="740" y="110" font-family="Arial" font-size="12" fill="#10b981">40% Complete</text>
+  <!-- Question Card -->
+  <rect x="30" y="130" width="740" height="340" rx="15" fill="white"/>
+  <!-- Question -->
+  <text x="55" y="170" font-family="Segoe UI, Arial" font-size="18" font-weight="bold" fill="#333">Q4. What is the correct way to declare a variable in JavaScript ES6?</text>
+  <!-- Options -->
+  <g transform="translate(55, 200)">
+    <rect width="680" height="55" rx="10" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <circle cx="30" cy="27" r="12" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="55" y="32" font-family="Arial" font-size="14" fill="#333">A. var myVariable = "value";</text>
+  </g>
+  <g transform="translate(55, 265)">
+    <rect width="680" height="55" rx="10" fill="#eff6ff" stroke="#4facfe" stroke-width="2"/>
+    <circle cx="30" cy="27" r="12" fill="#4facfe"/>
+    <circle cx="30" cy="27" r="5" fill="white"/>
+    <text x="55" y="32" font-family="Arial" font-size="14" fill="#333" font-weight="bold">B. let myVariable = "value";</text>
+  </g>
+  <g transform="translate(55, 330)">
+    <rect width="680" height="55" rx="10" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <circle cx="30" cy="27" r="12" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="55" y="32" font-family="Arial" font-size="14" fill="#333">C. variable myVariable = "value";</text>
+  </g>
+  <g transform="translate(55, 395)">
+    <rect width="680" height="55" rx="10" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <circle cx="30" cy="27" r="12" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+    <text x="55" y="32" font-family="Arial" font-size="14" fill="#333">D. int myVariable = "value";</text>
+  </g>
+  <!-- Navigation Buttons -->
+  <rect x="55" y="460" width="120" height="45" rx="8" fill="white" stroke="#e5e7eb"/>
+  <text x="115" y="488" font-family="Arial" font-size="14" fill="#666" text-anchor="middle">Previous</text>
+  <rect x="610" y="460" width="120" height="45" rx="8" fill="#4facfe"/>
+  <text x="670" y="488" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Next</text>
+  <!-- Question Navigator -->
+  <g transform="translate(300, 460)">
+    <rect width="30" height="30" rx="5" fill="#10b981"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">1</text>
+  </g>
+  <g transform="translate(340, 460)">
+    <rect width="30" height="30" rx="5" fill="#10b981"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">2</text>
+  </g>
+  <g transform="translate(380, 460)">
+    <rect width="30" height="30" rx="5" fill="#10b981"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">3</text>
+  </g>
+  <g transform="translate(420, 460)">
+    <rect width="30" height="30" rx="5" fill="#4facfe"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">4</text>
+  </g>
+  <g transform="translate(460, 460)">
+    <rect width="30" height="30" rx="5" fill="#e5e7eb"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="#888" text-anchor="middle">5</text>
+  </g>
+  <g transform="translate(500, 460)">
+    <rect width="30" height="30" rx="5" fill="#e5e7eb"/>
+    <text x="15" y="20" font-family="Arial" font-size="12" fill="#888" text-anchor="middle">...</text>
+  </g>
+</svg>

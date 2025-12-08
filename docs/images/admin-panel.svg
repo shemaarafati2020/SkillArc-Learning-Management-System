@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f0f2f5"/>
+  <!-- Sidebar -->
+  <rect width="200" height="500" fill="#0f0e17"/>
+  <circle cx="100" cy="60" r="30" fill="#ff8906"/>
+  <text x="100" y="65" font-family="Arial" font-size="24" fill="white" text-anchor="middle">A</text>
+  <text x="100" y="110" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Admin User</text>
+  <text x="100" y="130" font-family="Arial" font-size="11" fill="#888" text-anchor="middle">admin@unilearn.com</text>
+  <rect x="20" y="170" width="160" height="35" rx="5" fill="#ff8906"/>
+  <text x="100" y="193" font-family="Arial" font-size="13" fill="white" text-anchor="middle">Dashboard</text>
+  <text x="100" y="235" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Users</text>
+  <text x="100" y="270" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Courses</text>
+  <text x="100" y="305" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Analytics</text>
+  <text x="100" y="340" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Audit Logs</text>
+  <text x="100" y="375" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Settings</text>
+  <text x="100" y="410" font-family="Arial" font-size="13" fill="#888" text-anchor="middle">Backup</text>
+  <!-- Main Content -->
+  <text x="230" y="45" font-family="Segoe UI, Arial" font-size="22" font-weight="bold" fill="#333">Admin Dashboard</text>
+  <!-- Stats Cards -->
+  <g transform="translate(220, 60)">
+    <rect width="130" height="80" rx="10" fill="white"/>
+    <text x="15" y="30" font-family="Arial" font-size="11" fill="#888">Total Users</text>
+    <text x="15" y="60" font-family="Arial" font-size="28" font-weight="bold" fill="#ff8906">1,234</text>
+  </g>
+  <g transform="translate(365, 60)">
+    <rect width="130" height="80" rx="10" fill="white"/>
+    <text x="15" y="30" font-family="Arial" font-size="11" fill="#888">Active Courses</text>
+    <text x="15" y="60" font-family="Arial" font-size="28" font-weight="bold" fill="#4facfe">56</text>
+  </g>
+  <g transform="translate(510, 60)">
+    <rect width="130" height="80" rx="10" fill="white"/>
+    <text x="15" y="30" font-family="Arial" font-size="11" fill="#888">Enrollments</text>
+    <text x="15" y="60" font-family="Arial" font-size="28" font-weight="bold" fill="#10b981">3,456</text>
+  </g>
+  <g transform="translate(655, 60)">
+    <rect width="130" height="80" rx="10" fill="white"/>
+    <text x="15" y="30" font-family="Arial" font-size="11" fill="#888">Revenue</text>
+    <text x="15" y="60" font-family="Arial" font-size="28" font-weight="bold" fill="#8b5cf6">$45K</text>
+  </g>
+  <!-- User Management Table -->
+  <rect x="220" y="160" width="565" height="200" rx="10" fill="white"/>
+  <text x="240" y="190" font-family="Arial" font-size="14" font-weight="bold" fill="#333">User Management</text>
+  <!-- Table Header -->
+  <rect x="235" y="205" width="535" height="30" fill="#f8fafc"/>
+  <text x="250" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#666">Name</text>
+  <text x="380" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#666">Email</text>
+  <text x="540" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#666">Role</text>
+  <text x="640" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#666">Status</text>
+  <text x="720" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#666">Action</text>
+  <!-- Row 1 -->
+  <text x="250" y="260" font-family="Arial" font-size="11" fill="#333">John Doe</text>
+  <text x="380" y="260" font-family="Arial" font-size="11" fill="#666">john@email.com</text>
+  <rect x="530" y="248" width="60" height="18" rx="9" fill="#dbeafe"/>
+  <text x="560" y="261" font-family="Arial" font-size="10" fill="#1e40af" text-anchor="middle">Student</text>
+  <circle cx="660" cy="255" r="5" fill="#10b981"/>
+  <text x="740" y="260" font-family="Arial" font-size="10" fill="#4facfe">Edit</text>
+  <!-- Row 2 -->
+  <text x="250" y="290" font-family="Arial" font-size="11" fill="#333">Jane Smith</text>
+  <text x="380" y="290" font-family="Arial" font-size="11" fill="#666">jane@email.com</text>
+  <rect x="530" y="278" width="70" height="18" rx="9" fill="#fef3c7"/>
+  <text x="565" y="291" font-family="Arial" font-size="10" fill="#92400e" text-anchor="middle">Instructor</text>
+  <circle cx="660" cy="285" r="5" fill="#10b981"/>
+  <text x="740" y="290" font-family="Arial" font-size="10" fill="#4facfe">Edit</text>
+  <!-- Row 3 -->
+  <text x="250" y="320" font-family="Arial" font-size="11" fill="#333">Bob Wilson</text>
+  <text x="380" y="320" font-family="Arial" font-size="11" fill="#666">bob@email.com</text>
+  <rect x="530" y="308" width="60" height="18" rx="9" fill="#dbeafe"/>
+  <text x="560" y="321" font-family="Arial" font-size="10" fill="#1e40af" text-anchor="middle">Student</text>
+  <circle cx="660" cy="315" r="5" fill="#f59e0b"/>
+  <text x="740" y="320" font-family="Arial" font-size="10" fill="#4facfe">Edit</text>
+  <!-- System Health -->
+  <rect x="220" y="380" width="275" height="100" rx="10" fill="white"/>
+  <text x="240" y="410" font-family="Arial" font-size="14" font-weight="bold" fill="#333">System Health</text>
+  <text x="240" y="440" font-family="Arial" font-size="11" fill="#666">Server Status</text>
+  <circle cx="400" cy="435" r="6" fill="#10b981"/>
+  <text x="240" y="465" font-family="Arial" font-size="11" fill="#666">Database</text>
+  <circle cx="400" cy="460" r="6" fill="#10b981"/>
+  <!-- Quick Actions -->
+  <rect x="510" y="380" width="275" height="100" rx="10" fill="white"/>
+  <text x="530" y="410" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Quick Actions</text>
+  <rect x="530" y="425" width="100" height="30" rx="5" fill="#ff8906"/>
+  <text x="580" y="445" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Add User</text>
+  <rect x="650" y="425" width="100" height="30" rx="5" fill="#4facfe"/>
+  <text x="700" y="445" font-family="Arial" font-size="11" fill="white" text-anchor="middle">Add Course</text>
+</svg>

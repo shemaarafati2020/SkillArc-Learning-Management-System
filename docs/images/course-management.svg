@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f0f2f5"/>
+  <!-- Header -->
+  <rect width="800" height="60" fill="white"/>
+  <text x="30" y="38" font-family="Segoe UI, Arial" font-size="20" font-weight="bold" fill="#333">Course Management</text>
+  <rect x="620" y="18" width="150" height="35" rx="8" fill="#4facfe"/>
+  <text x="695" y="42" font-family="Arial" font-size="13" fill="white" text-anchor="middle">+ Create Course</text>
+  <!-- Search Bar -->
+  <rect x="30" y="80" width="400" height="40" rx="8" fill="white" stroke="#e5e7eb"/>
+  <text x="50" y="105" font-family="Arial" font-size="13" fill="#888">Search courses...</text>
+  <!-- Filter Buttons -->
+  <rect x="450" y="80" width="80" height="40" rx="8" fill="#4facfe"/>
+  <text x="490" y="105" font-family="Arial" font-size="12" fill="white" text-anchor="middle">All</text>
+  <rect x="540" y="80" width="80" height="40" rx="8" fill="white" stroke="#e5e7eb"/>
+  <text x="580" y="105" font-family="Arial" font-size="12" fill="#666" text-anchor="middle">Active</text>
+  <rect x="630" y="80" width="80" height="40" rx="8" fill="white" stroke="#e5e7eb"/>
+  <text x="670" y="105" font-family="Arial" font-size="12" fill="#666" text-anchor="middle">Draft</text>
+  <!-- Course Cards Grid -->
+  <g transform="translate(30, 140)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#667eea"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Web Development</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">Full Stack Bootcamp</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">12 Modules | 48 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">156 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#dcfce7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">Active</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+  <g transform="translate(280, 140)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#f093fb"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Data Science</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">Python for Analytics</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">8 Modules | 32 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">98 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#dcfce7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">Active</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+  <g transform="translate(530, 140)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#4facfe"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">UI/UX Design</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">Design Fundamentals</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">6 Modules | 24 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">67 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#fef3c7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#92400e" text-anchor="middle">Draft</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+  <g transform="translate(30, 320)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#10b981"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Machine Learning</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">AI Fundamentals</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">10 Modules | 40 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">134 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#dcfce7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">Active</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+  <g transform="translate(280, 320)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#f59e0b"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Mobile Development</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">React Native</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">9 Modules | 36 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">89 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#dcfce7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#166534" text-anchor="middle">Active</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+  <g transform="translate(530, 320)">
+    <rect width="235" height="160" rx="10" fill="white"/>
+    <rect width="235" height="80" rx="10" fill="#8b5cf6"/>
+    <text x="118" y="45" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Cloud Computing</text>
+    <text x="118" y="65" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">AWS Fundamentals</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">7 Modules | 28 Lessons</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">45 Students Enrolled</text>
+    <rect x="15" y="135" width="60" height="20" rx="4" fill="#fef3c7"/>
+    <text x="45" y="149" font-family="Arial" font-size="10" fill="#92400e" text-anchor="middle">Draft</text>
+    <text x="180" y="149" font-family="Arial" font-size="11" fill="#4facfe">Edit</text>
+    <text x="210" y="149" font-family="Arial" font-size="11" fill="#ef4444">Delete</text>
+  </g>
+</svg>

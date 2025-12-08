@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe"/>
+      <stop offset="100%" style="stop-color:#00f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#f5f7fa"/>
+  <!-- Header -->
+  <rect width="800" height="60" fill="white"/>
+  <circle cx="40" cy="30" r="15" fill="url(#heroGrad)"/>
+  <text x="65" y="36" font-family="Segoe UI, Arial" font-size="18" font-weight="bold" fill="#333">UniLearn</text>
+  <text x="500" y="36" font-family="Arial" font-size="14" fill="#666">Courses</text>
+  <text x="580" y="36" font-family="Arial" font-size="14" fill="#666">About</text>
+  <text x="650" y="36" font-family="Arial" font-size="14" fill="#666">Contact</text>
+  <rect x="710" y="18" width="70" height="28" rx="14" fill="url(#heroGrad)"/>
+  <text x="745" y="37" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Login</text>
+  <!-- Hero Section -->
+  <rect y="60" width="800" height="240" fill="url(#heroGrad)"/>
+  <text x="80" y="150" font-family="Segoe UI, Arial" font-size="36" font-weight="bold" fill="white">Learn Without Limits</text>
+  <text x="80" y="185" font-family="Arial" font-size="16" fill="rgba(255,255,255,0.9)">Start, switch, or advance your career with courses</text>
+  <text x="80" y="205" font-family="Arial" font-size="16" fill="rgba(255,255,255,0.9)">from world-class instructors</text>
+  <rect x="80" y="230" width="140" height="40" rx="20" fill="white"/>
+  <text x="150" y="255" font-family="Arial" font-size="14" font-weight="bold" fill="#4facfe" text-anchor="middle">Get Started</text>
+  <!-- Course Cards -->
+  <g transform="translate(50, 320)">
+    <rect width="220" height="150" rx="10" fill="white" filter="url(#shadow)"/>
+    <rect width="220" height="80" rx="10" fill="#667eea"/>
+    <text x="110" y="50" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Web Development</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">Full Stack Course</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">12 Modules | 48 Lessons</text>
+  </g>
+  <g transform="translate(290, 320)">
+    <rect width="220" height="150" rx="10" fill="white"/>
+    <rect width="220" height="80" rx="10" fill="#f093fb"/>
+    <text x="110" y="50" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Data Science</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">Python Analytics</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">8 Modules | 32 Lessons</text>
+  </g>
+  <g transform="translate(530, 320)">
+    <rect width="220" height="150" rx="10" fill="white"/>
+    <rect width="220" height="80" rx="10" fill="#4facfe"/>
+    <text x="110" y="50" font-family="Arial" font-size="14" fill="white" text-anchor="middle">UI/UX Design</text>
+    <text x="15" y="105" font-family="Arial" font-size="12" fill="#333">Design Fundamentals</text>
+    <text x="15" y="125" font-family="Arial" font-size="11" fill="#888">6 Modules | 24 Lessons</text>
+  </g>
+</svg>

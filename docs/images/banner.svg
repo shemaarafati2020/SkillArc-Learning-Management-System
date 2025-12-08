@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb"/>
+      <stop offset="100%" style="stop-color:#f5576c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bgGrad)"/>
+  <circle cx="100" cy="50" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="250" r="120" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="900" cy="50" r="60" fill="rgba(255,255,255,0.06)"/>
+  <rect x="50" y="100" width="60" height="60" rx="10" fill="rgba(255,255,255,0.15)"/>
+  <rect x="1090" y="80" width="40" height="40" rx="8" fill="rgba(255,255,255,0.12)"/>
+  <text x="600" y="130" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">UniLearn</text>
+  <text x="600" y="180" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)" text-anchor="middle">Learning Management System</text>
+  <text x="600" y="230" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.7)" text-anchor="middle">Empowering Education Through Technology</text>
+  <g transform="translate(450, 250)">
+    <rect width="80" height="30" rx="15" fill="rgba(255,255,255,0.2)"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">React</text>
+  </g>
+  <g transform="translate(560, 250)">
+    <rect width="80" height="30" rx="15" fill="rgba(255,255,255,0.2)"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">PHP</text>
+  </g>
+  <g transform="translate(670, 250)">
+    <rect width="80" height="30" rx="15" fill="rgba(255,255,255,0.2)"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="white" text-anchor="middle">MySQL</text>
+  </g>
+</svg>
