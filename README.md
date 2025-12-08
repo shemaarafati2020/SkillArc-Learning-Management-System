@@ -25,8 +25,6 @@
 
 <br/>
 
-[Features](#-features) | [Screenshots](#-screenshots) | [Quick Start](#-quick-start) | [Installation](#-installation) | [API](#-api-endpoints)
-
 <br/>
 
 </div>
