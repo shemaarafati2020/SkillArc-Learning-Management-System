@@ -444,42 +444,6 @@ The backend provides RESTful API endpoints:
 
 ---
 
-## Database Schema
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│    users     │     │   courses    │     │   modules    │
-├──────────────┤     ├──────────────┤     ├──────────────┤
-│ id           │────<│ instructor_id│     │ id           │
-│ name         │     │ id           │────<│ course_id    │
-│ email        │     │ title        │     │ title        │
-│ password     │     │ description  │     │ order        │
-│ role         │     │ thumbnail    │     └──────┬───────┘
-└──────┬───────┘     └──────────────┘            │
-       │                    │                    │
-       │             ┌──────┴───────┐     ┌──────┴───────┐
-       │             │ enrollments  │     │   lessons    │
-       │             ├──────────────┤     ├──────────────┤
-       └────────────>│ user_id      │     │ id           │
-                     │ course_id    │     │ module_id    │
-                     │ progress     │     │ title        │
-                     └──────────────┘     │ content      │
-                                          └──────────────┘
-```
-
----
-
-## Demo Credentials
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@unilearn.com | admin123 |
-| Instructor | instructor@unilearn.com | instructor123 |
-| Student | student@unilearn.com | student123 |
-
-> **Note:** These are sample credentials. Update them after initial setup.
-
----
 
 ## Contributing
 
