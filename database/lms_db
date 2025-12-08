@@ -1,0 +1,944 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 08, 2025 at 12:46 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `lms_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `assign_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `due_date` datetime DEFAULT NULL,
+  `max_score` decimal(6,2) DEFAULT 100.00,
+  `is_published` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audit_logs`
+--
+
+CREATE TABLE `audit_logs` (
+  `log_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `action` varchar(100) NOT NULL,
+  `target_table` varchar(50) DEFAULT NULL,
+  `target_id` int(11) DEFAULT NULL,
+  `old_values` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`old_values`)),
+  `new_values` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`new_values`)),
+  `ip_address` varchar(45) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `audit_logs`
+--
+
+INSERT INTO `audit_logs` (`log_id`, `user_id`, `action`, `target_table`, `target_id`, `old_values`, `new_values`, `ip_address`, `created_at`) VALUES
+(1, NULL, 'CREATE', 'users', 2, NULL, '{\"name\":\"SHEMA ARAFATI HATEGEKIMANA\",\"email\":\"shemaarafati26@gmail.com\"}', '::1', '2025-12-03 18:44:02'),
+(3, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-03 19:28:26'),
+(4, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-03 19:43:30'),
+(5, NULL, 'CREATE', 'users', 30, NULL, '{\"name\":\"hirwa edison\",\"email\":\"shemaarafati69@gmail.com\"}', '::1', '2025-12-03 19:44:27'),
+(6, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-03 19:44:59'),
+(7, NULL, 'CREATE', 'users', 31, NULL, '{\"name\":\"sangwa josephat\",\"email\":\"shemaarafati940@gmail.com\"}', '::1', '2025-12-03 19:46:15'),
+(8, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-03 19:47:45'),
+(9, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-03 19:48:14'),
+(10, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-03 20:23:21'),
+(11, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-03 20:23:32'),
+(12, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-03 20:32:09'),
+(13, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-03 20:32:25'),
+(14, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-03 21:16:03'),
+(15, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-03 21:16:39'),
+(16, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-03 21:17:12'),
+(17, 31, 'UPDATE', 'users', 27, '{\"user_id\":27,\"name\":\"SHEMA ARAFATI HATEGEKIMANA\",\"email\":\"shemaarafati26@gmail.com\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":\"rp karongi college\",\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:28:07\",\"last_login\":\"2025-12-03 23:16:03\"}', '{\"is_active\":\"0\"}', '::1', '2025-12-03 21:43:35'),
+(18, 31, 'UPDATE', 'users', 27, '{\"user_id\":27,\"name\":\"SHEMA ARAFATI HATEGEKIMANA\",\"email\":\"shemaarafati26@gmail.com\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":\"rp karongi college\",\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":0,\"created_at\":\"2025-12-03 21:28:07\",\"last_login\":\"2025-12-03 23:16:03\"}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:43:36'),
+(19, 31, 'DELETE', 'users', 19, '{\"user_id\":19,\"name\":\"System Admin\",\"email\":\"admin@lms.edu\",\"role\":\"admin\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', NULL, '::1', '2025-12-03 21:43:59'),
+(20, 31, 'UPDATE', 'users', 27, '{\"user_id\":27,\"name\":\"SHEMA ARAFATI HATEGEKIMANA\",\"email\":\"shemaarafati26@gmail.com\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":\"rp karongi college\",\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:28:07\",\"last_login\":\"2025-12-03 23:16:03\"}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(21, 31, 'UPDATE', 'users', 23, '{\"user_id\":23,\"name\":\"Brian Clarke\",\"email\":\"brian.c@lms.edu\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(22, 31, 'UPDATE', 'users', 30, '{\"user_id\":30,\"name\":\"hirwa edison\",\"email\":\"shemaarafati69@gmail.com\",\"role\":\"instructor\",\"avatar_url\":null,\"bio\":null,\"institution\":\"rp karongi college\",\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:44:27\",\"last_login\":\"2025-12-03 22:32:25\"}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(23, 31, 'UPDATE', 'users', 20, '{\"user_id\":20,\"name\":\"John Doe\",\"email\":\"john.doe@lms.edu\",\"role\":\"instructor\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(24, 31, 'UPDATE', 'users', 22, '{\"user_id\":22,\"name\":\"Alice Johnson\",\"email\":\"alice.j@lms.edu\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(25, 31, 'UPDATE', 'users', 21, '{\"user_id\":21,\"name\":\"Mary Smith\",\"email\":\"mary.smith@lms.edu\",\"role\":\"instructor\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(26, 31, 'UPDATE', 'users', 26, '{\"user_id\":26,\"name\":\"Ella Wayne\",\"email\":\"ella.w@lms.edu\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(27, 31, 'UPDATE', 'users', 25, '{\"user_id\":25,\"name\":\"Danny Frost\",\"email\":\"danny.f@lms.edu\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(28, 31, 'UPDATE', 'users', 24, '{\"user_id\":24,\"name\":\"Christine Omar\",\"email\":\"christine.o@lms.edu\",\"role\":\"student\",\"avatar_url\":null,\"bio\":null,\"institution\":null,\"language_preference\":\"en\",\"theme_preference\":\"light\",\"is_active\":1,\"created_at\":\"2025-12-03 21:19:26\",\"last_login\":null}', '{\"is_active\":\"1\"}', '::1', '2025-12-03 21:45:45'),
+(29, 31, 'UPDATE', 'courses', 48, '{\"course_id\":48,\"instructor_id\":30,\"title\":\"Deep Learning & Neural Networks\",\"description\":\"Master deep learning with TensorFlow and Keras. Build CNNs, RNNs, GANs, and transformer models. Learn computer vision and natural language processing.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1677442136019-21780ecad995?w=400\",\"category\":\"Machine Learning\",\"start_date\":null,\"end_date\":null,\"type\":\"self-paced\",\"status\":\"published\",\"max_students\":50,\"passing_percentage\":\"80.00\",\"created_at\":\"2025-12-03 22:43:31\",\"updated_at\":\"2025-12-03 22:43:31\",\"instructor_name\":\"hirwa edison\",\"instructor_email\":\"shemaarafati69@gmail.com\",\"enrolled_count\":0,\"module_count\":0}', '{\"title\":\"Deep Learning &amp; Neural Networks\",\"description\":\"Master deep learning with TensorFlow and Keras. Build CNNs, RNNs, GANs, and transformer models. Learn computer vision and natural language processing.\",\"category\":\"Machine Learning\",\"status\":\"published\"}', '::1', '2025-12-03 22:00:51'),
+(30, 31, 'UPDATE_SETTINGS', 'system_settings', NULL, NULL, '{\"site_name\":\"Learning Management System\",\"default_language\":\"English\"}', '::1', '2025-12-03 22:23:18'),
+(31, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-04 10:31:50'),
+(32, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-04 10:32:20'),
+(33, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-04 10:32:41'),
+(34, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-04 10:33:00'),
+(35, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-04 10:33:19'),
+(36, 31, 'UPDATE_SETTINGS', 'system_settings', NULL, NULL, '{\"plagiarism_threshold\":\"70\"}', '::1', '2025-12-04 10:35:56'),
+(37, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-04 10:37:46'),
+(38, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-04 10:37:55'),
+(39, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-04 10:44:01'),
+(40, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-04 10:44:17'),
+(41, 31, 'UPDATE', 'courses', 61, '{\"course_id\":61,\"instructor_id\":20,\"title\":\"Database Design & SQL Mastery\",\"description\":\"Master database design, SQL queries, normalization, indexing, transactions, and work with MySQL, PostgreSQL, and MongoDB.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1544383835-bda2bc66a55d?w=400\",\"category\":\"Databases\",\"start_date\":null,\"end_date\":null,\"type\":\"self-paced\",\"status\":\"published\",\"max_students\":150,\"passing_percentage\":\"70.00\",\"created_at\":\"2025-12-03 22:43:31\",\"updated_at\":\"2025-12-03 22:43:31\",\"instructor_name\":\"John Doe\",\"instructor_email\":\"john.doe@lms.edu\",\"enrolled_count\":0,\"module_count\":0}', '{\"title\":\"Database Design &amp; SQL Mastery\",\"description\":\"Master database design, SQL queries, normalization, indexing, transactions, and work with MySQL, PostgreSQL, and MongoDB.\",\"category\":\"Databases\",\"status\":\"published\"}', '::1', '2025-12-04 11:08:27'),
+(42, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-04 11:10:23'),
+(43, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-04 12:05:26'),
+(44, 31, 'UPDATE', 'courses', 56, '{\"course_id\":56,\"instructor_id\":30,\"title\":\"Project Management Professional\",\"description\":\"Master project management methodologies including Agile, Scrum, and Waterfall. Learn planning, execution, monitoring, and team leadership skills.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1454165804606-c3d57bc86b40?w=400\",\"category\":\"Business\",\"level\":\"all-levels\",\"language\":\"English\",\"duration_hours\":\"12.00\",\"price\":\"30.00\",\"prerequisites\":\"Basic computer literacy and willingness to learn.\",\"learning_outcomes\":\"Understand core concepts, complete hands-on projects, and build real-world applications.\",\"tags\":\"learning, education, skills, online course\",\"start_date\":null,\"end_date\":null,\"type\":\"self-paced\",\"status\":\"published\",\"max_students\":120,\"passing_percentage\":\"65.00\",\"average_rating\":\"0.00\",\"total_reviews\":0,\"created_at\":\"2025-12-03 22:43:31\",\"updated_at\":\"2025-12-04 14:06:41\",\"instructor_name\":\"hirwa edison\",\"instructor_email\":\"shemaarafati69@gmail.com\",\"enrolled_count\":0,\"module_count\":0}', '{\"title\":\"Project Management Professional\",\"description\":\"Master project management methodologies including Agile, Scrum, and Waterfall. Learn planning, execution, monitoring, and team leadership skills.\",\"category\":\"Business\",\"status\":\"published\"}', '::1', '2025-12-04 12:14:03'),
+(45, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-04 12:29:16'),
+(46, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-04 12:30:26'),
+(47, 31, 'UPDATE', 'courses', 61, '{\"course_id\":61,\"instructor_id\":20,\"title\":\"Database Design &amp; SQL Mastery\",\"description\":\"Master database design, SQL queries, normalization, indexing, transactions, and work with MySQL, PostgreSQL, and MongoDB.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1544383835-bda2bc66a55d?w=400\",\"category\":\"Databases\",\"level\":\"all-levels\",\"language\":\"English\",\"duration_hours\":\"12.00\",\"price\":\"5.00\",\"prerequisites\":\"Basic SQL knowledge recommended.\",\"learning_outcomes\":\"Master database design, normalization, SQL queries, indexing, and transactions.\",\"tags\":\"database, SQL, dbms\",\"start_date\":null,\"end_date\":null,\"type\":\"self-paced\",\"status\":\"published\",\"max_students\":150,\"passing_percentage\":\"70.00\",\"average_rating\":\"0.00\",\"total_reviews\":0,\"created_at\":\"2025-12-03 22:43:31\",\"updated_at\":\"2025-12-04 14:06:41\",\"instructor_name\":\"John Doe\",\"instructor_email\":\"john.doe@lms.edu\",\"enrolled_count\":0,\"module_count\":0}', '{\"instructor_id\":30}', '::1', '2025-12-04 12:31:20'),
+(48, 31, 'UPDATE', 'courses', 61, '{\"course_id\":61,\"instructor_id\":30,\"title\":\"Database Design &amp; SQL Mastery\",\"description\":\"Master database design, SQL queries, normalization, indexing, transactions, and work with MySQL, PostgreSQL, and MongoDB.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1544383835-bda2bc66a55d?w=400\",\"category\":\"Databases\",\"level\":\"all-levels\",\"language\":\"English\",\"duration_hours\":\"12.00\",\"price\":\"5.00\",\"prerequisites\":\"Basic SQL knowledge recommended.\",\"learning_outcomes\":\"Master database design, normalization, SQL queries, indexing, and transactions.\",\"tags\":\"database, SQL, dbms\",\"start_date\":null,\"end_date\":null,\"type\":\"self-paced\",\"status\":\"published\",\"max_students\":150,\"passing_percentage\":\"70.00\",\"average_rating\":\"0.00\",\"total_reviews\":0,\"created_at\":\"2025-12-03 22:43:31\",\"updated_at\":\"2025-12-04 14:31:20\",\"instructor_name\":\"hirwa edison\",\"instructor_email\":\"shemaarafati69@gmail.com\",\"enrolled_count\":0,\"module_count\":0}', '{\"instructor_id\":20}', '::1', '2025-12-04 12:31:34'),
+(49, 31, 'UPDATE', 'courses', 112, '{\"course_id\":112,\"instructor_id\":44,\"title\":\"IoT Fundamentals with Arduino\",\"description\":\"Learn how IoT devices communicate and interact using Arduino boards.\",\"thumbnail_url\":\"https:\\/\\/images.unsplash.com\\/photo-1518770660439-4636190af475\",\"category\":\"IoT\",\"level\":\"beginner\",\"language\":\"English\",\"duration_hours\":\"12.00\",\"price\":\"20.00\",\"prerequisites\":\"None\",\"learning_outcomes\":\"Build simple IoT prototypes and sensors.\",\"tags\":\"iot, arduino, electronics\",\"start_date\":\"2025-04-01\",\"end_date\":\"2025-06-20\",\"type\":\"cohort\",\"status\":\"published\",\"max_students\":180,\"passing_percentage\":\"65.00\",\"average_rating\":\"0.00\",\"total_reviews\":0,\"created_at\":\"2025-12-04 14:52:34\",\"updated_at\":\"2025-12-04 14:52:34\",\"instructor_name\":\"Habimana Eric\",\"instructor_email\":\"eric.habimana@lms.rp\",\"enrolled_count\":0,\"module_count\":0}', '{\"title\":\"IoT Fundamentals with Arduino\",\"description\":\"Learn how IoT devices communicate and interact using Arduino boards.\",\"category\":\"IoT\",\"status\":\"published\"}', '::1', '2025-12-04 13:28:25'),
+(50, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-04 13:29:12'),
+(51, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-04 13:30:27'),
+(52, 30, 'CREATE', 'modules', 1, NULL, '{\"title\":\"basics of python\",\"description\":\"basics 0f python\",\"course_id\":\"57\",\"is_published\":\"\"}', '::1', '2025-12-04 14:21:34'),
+(53, 30, 'CREATE', 'modules', 2, NULL, '{\"title\":\"python\",\"description\":\"basics of python\",\"course_id\":\"47\",\"is_published\":\"\"}', '::1', '2025-12-04 14:28:41'),
+(54, 30, 'CREATE', 'modules', 3, NULL, '{\"course_id\":\"56\",\"title\":\"project management profession\",\"description\":\"how to manage your project\",\"order_index\":\"1\",\"is_published\":\"\"}', '::1', '2025-12-04 15:33:19'),
+(55, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-04 15:43:03'),
+(56, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-04 15:59:45'),
+(57, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-04 16:00:03'),
+(58, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-05 14:10:08'),
+(59, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-05 14:10:41'),
+(60, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-05 14:10:56'),
+(61, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-05 14:11:35'),
+(62, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-05 14:11:50'),
+(63, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-07 11:55:32'),
+(64, 27, 'CREATE', 'enrollments', 2, NULL, '{\"user_id\":27,\"course_id\":102}', '::1', '2025-12-07 13:03:04'),
+(65, 27, 'CREATE', 'enrollments', 3, NULL, '{\"user_id\":27,\"course_id\":96}', '::1', '2025-12-07 13:03:35'),
+(66, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-07 13:03:44'),
+(67, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-07 13:04:12'),
+(68, 31, 'LOGIN', 'users', 31, NULL, NULL, '::1', '2025-12-08 11:32:49'),
+(69, 31, 'LOGOUT', 'users', 31, NULL, NULL, '::1', '2025-12-08 11:34:40'),
+(70, 27, 'LOGIN', 'users', 27, NULL, NULL, '::1', '2025-12-08 11:34:49'),
+(71, 27, 'LOGOUT', 'users', 27, NULL, NULL, '::1', '2025-12-08 11:35:24'),
+(72, 30, 'LOGIN', 'users', 30, NULL, NULL, '::1', '2025-12-08 11:35:38'),
+(73, 30, 'LOGOUT', 'users', 30, NULL, NULL, '::1', '2025-12-08 11:36:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `certificates`
+--
+
+CREATE TABLE `certificates` (
+  `cert_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `certificate_number` varchar(50) NOT NULL,
+  `issue_date` date NOT NULL,
+  `pdf_url` varchar(500) DEFAULT NULL,
+  `final_grade` decimal(5,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(11) NOT NULL,
+  `instructor_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `thumbnail_url` varchar(255) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `level` enum('beginner','intermediate','advanced','all-levels') DEFAULT 'all-levels',
+  `language` varchar(50) DEFAULT 'English',
+  `duration_hours` decimal(6,2) DEFAULT 0.00,
+  `price` decimal(10,2) DEFAULT 0.00,
+  `prerequisites` text DEFAULT NULL,
+  `learning_outcomes` text DEFAULT NULL,
+  `tags` varchar(500) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `type` enum('cohort','self-paced') DEFAULT 'self-paced',
+  `status` enum('draft','pending','published','archived') DEFAULT 'draft',
+  `max_students` int(11) DEFAULT NULL,
+  `passing_percentage` decimal(5,2) DEFAULT 60.00,
+  `average_rating` decimal(3,2) DEFAULT 0.00,
+  `total_reviews` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `instructor_id`, `title`, `description`, `thumbnail_url`, `category`, `level`, `language`, `duration_hours`, `price`, `prerequisites`, `learning_outcomes`, `tags`, `start_date`, `end_date`, `type`, `status`, `max_students`, `passing_percentage`, `average_rating`, `total_reviews`, `created_at`, `updated_at`) VALUES
+(44, 20, 'React & Redux - Build Modern Web Apps', 'Build powerful single-page applications with React and Redux. Learn hooks, context API, state management, routing, and deploy production-ready applications.', 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400', 'Web Development', 'all-levels', 'English', 15.00, 20.00, 'Basic understanding of HTML, CSS, and JavaScript.', 'Build modern React applications, manage state, work with Redux, deploy production-ready apps.', 'react, redux, web development, frontend', NULL, NULL, 'self-paced', 'published', 200, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(45, 20, 'Node.js & Express - Backend Development', 'Master backend development with Node.js and Express. Build RESTful APIs, work with databases, implement authentication, and deploy scalable applications.', 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400', 'Web Development', 'all-levels', 'English', 16.00, 25.00, 'Basic JavaScript knowledge.', 'Build backend APIs, manage databases, handle authentication, deploy Node.js applications.', 'nodejs, express, backend, javascript', '2025-03-01', '2025-05-31', 'cohort', 'published', 80, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(46, 20, 'Data Science with Python', 'Learn data analysis, visualization, and machine learning with Python. Master pandas, NumPy, Matplotlib, and scikit-learn through real-world projects and datasets.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400', 'Data Science', 'all-levels', 'English', 12.00, 30.00, 'None required.', 'Learn programming fundamentals, problem solving, and Python scripting.', 'python, programming, coding', NULL, NULL, 'self-paced', 'published', 120, 75.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(47, 30, 'Machine Learning A-Z: Hands-On Python', 'Complete machine learning course covering supervised and unsupervised learning, neural networks, deep learning, and real-world applications with Python and TensorFlow.', 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400', 'Machine Learning', 'all-levels', 'English', 14.00, 35.00, 'None required.', 'Learn programming fundamentals, problem solving, and Python scripting.', 'python, programming, coding', '2025-02-15', '2025-07-15', 'cohort', 'published', 60, 75.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(48, 30, 'Deep Learning &amp; Neural Networks', 'Master deep learning with TensorFlow and Keras. Build CNNs, RNNs, GANs, and transformer models. Learn computer vision and natural language processing.', 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400', 'Machine Learning', 'all-levels', 'English', 13.00, 40.00, 'Basic computer literacy and willingness to learn.', 'Understand core concepts, complete hands-on projects, and build real-world applications.', 'learning, education, skills, online course', NULL, NULL, 'self-paced', 'published', 50, 80.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(49, 30, 'iOS Development with Swift', 'Build native iOS applications with Swift and SwiftUI. Learn iOS design patterns, Core Data, networking, and publish apps to the App Store.', 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400', 'Mobile Development', 'all-levels', 'English', 15.00, 45.00, 'Basic programming concepts recommended.', 'Build mobile apps with Swift, understand iOS UI design, deploy apps.', 'ios, swift, mobile development', '2025-03-15', '2025-06-30', 'cohort', 'published', 70, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(53, 20, 'Graphic Design Masterclass', 'Master graphic design with Adobe Photoshop, Illustrator, and InDesign. Learn typography, color theory, branding, and create professional designs.', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400', 'Design', 'all-levels', 'English', 13.00, 15.00, 'No design background required.', 'Master UI design, typography, color theory, Adobe Photoshop skills.', 'design, graphics, photoshop', '2025-02-20', '2025-05-20', 'cohort', 'published', 80, 65.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(54, 20, 'Digital Marketing Complete Course', 'Master digital marketing including SEO, SEM, social media marketing, email marketing, content marketing, and analytics. Grow your business online.', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400', 'Marketing', 'all-levels', 'English', 15.00, 20.00, 'No prior marketing experience necessary.', 'Learn SEO, SEM, analytics, branding, and digital ad campaigns.', 'marketing, digital marketing, seo', NULL, NULL, 'self-paced', 'published', 200, 60.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(55, 20, 'Business Analytics & Intelligence', 'Learn business analytics with Excel, SQL, Tableau, and Power BI. Make data-driven decisions and create impactful visualizations and reports.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400', 'Business', 'all-levels', 'English', 16.00, 25.00, 'Basic business and math skills recommended.', 'Perform business analytics, create dashboards, interpret data.', 'business, analytics, data', '2025-03-10', '2025-06-10', 'cohort', 'published', 100, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(56, 30, 'Project Management Professional', 'Master project management methodologies including Agile, Scrum, and Waterfall. Learn planning, execution, monitoring, and team leadership skills.', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400', 'Business', 'all-levels', 'English', 12.00, 30.00, 'Basic computer literacy and willingness to learn.', 'Understand core concepts, complete hands-on projects, and build real-world applications.', 'learning, education, skills, online course', NULL, NULL, 'self-paced', 'published', 120, 65.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(57, 30, 'Python Programming for Beginners', 'Start your programming journey with Python. Learn syntax, data structures, OOP, file handling, and build practical projects from scratch.', 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400', 'Programming', 'all-levels', 'English', 14.00, 35.00, 'None required.', 'Learn programming fundamentals, problem solving, and Python scripting.', 'python, programming, coding', NULL, NULL, 'self-paced', 'published', 250, 60.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(58, 30, 'Java Programming Masterclass', 'Master Java programming from basics to advanced. Learn OOP, collections, multithreading, Spring framework, and build enterprise applications.', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400', 'Programming', 'all-levels', 'English', 13.00, 40.00, 'Basic Java basics recommended.', 'Understand OOP principles, build Java applications, apply best practices.', 'java, programming, backend', '2025-02-25', '2025-07-25', 'cohort', 'published', 100, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:06:41'),
+(61, 20, 'Database Design &amp; SQL Mastery', 'Master database design, SQL queries, normalization, indexing, transactions, and work with MySQL, PostgreSQL, and MongoDB.', 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400', 'Databases', 'all-levels', 'English', 12.00, 5.00, 'Basic SQL knowledge recommended.', 'Master database design, normalization, SQL queries, indexing, and transactions.', 'database, SQL, dbms', NULL, NULL, 'self-paced', 'published', 150, 70.00, 0.00, 0, '2025-12-03 20:43:31', '2025-12-04 12:31:34'),
+(96, 40, 'Modern JavaScript Mastery', 'Learn ES6+, DOM manipulation, async programming, and modern JS patterns.', 'https://images.unsplash.com/photo-1587620962725-abab7fe55159', 'Web Development', 'intermediate', 'English', 14.00, 25.00, 'Basic JavaScript', 'Write clean JavaScript, build interactive components, and use async/await effectively.', 'javascript, frontend, es6', '2025-04-01', '2025-06-15', 'self-paced', 'published', 180, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(97, 41, 'Figma for UI/UX Designers', 'Design beautiful interfaces using Figma tools, components, and prototyping.', 'https://images.unsplash.com/photo-1498050108023-c5249f4df085', 'Design', 'beginner', 'English', 12.00, 20.00, 'None', 'Create wireframes, prototypes, and UI layouts using Figma.', 'figma, uiux, design', '2025-03-10', '2025-05-30', 'cohort', 'published', 150, 65.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(98, 42, 'Cybersecurity Risk Management', 'Learn how to assess, document, and mitigate cybersecurity risks.', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', 'Security', 'advanced', 'English', 15.00, 45.00, 'Basic networking', 'Perform risk analysis, security audits, and create mitigation plans.', 'cybersecurity, risk, audit', '2025-04-05', '2025-07-01', 'self-paced', 'published', 200, 75.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:57:32'),
+(99, 43, 'Machine Learning for Beginners', 'Learn ML concepts, data preprocessing, and simple prediction models.', 'https://images.unsplash.com/photo-1518770660439-4636190af475', 'Machine Learning', 'beginner', 'English', 12.00, 18.00, 'Basic math', 'Build regression and classification models.', 'machine learning, ai, python', '2025-03-20', '2025-05-20', 'cohort', 'published', 180, 60.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(100, 44, 'Advanced Android UI Design', 'Master Jetpack Compose, Material You design, and advanced UI animations.', 'https://images.unsplash.com/photo-1558655146-9f40138edfeb', 'Mobile Development', 'advanced', 'English', 16.00, 40.00, 'Android basics', 'Create scalable UI layouts and animations using Kotlin.', 'android, kotlin, ui', '2025-04-01', '2025-06-30', 'self-paced', 'published', 150, 75.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(101, 45, 'Business Intelligence with Power BI', 'Create dashboards, data models, and interactive reports using Power BI.', 'https://images.unsplash.com/photo-1556761175-4b46a572b786', 'Business', 'intermediate', 'English', 14.00, 30.00, 'Basic Excel', 'Build BI dashboards and automate data reporting.', 'powerbi, business analytics', '2025-03-15', '2025-06-01', 'cohort', 'published', 200, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(102, 40, 'Web Accessibility & Inclusive Design', 'Learn WCAG guidelines to build accessible websites.', 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d', 'Web Development', 'beginner', 'English', 12.00, 12.00, 'HTML/CSS basics', 'Make websites accessible for all users.', 'accessibility, wcag, frontend', '2025-03-25', '2025-05-15', 'self-paced', 'published', 160, 65.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(103, 41, 'Logo Design Masterclass', 'Learn professional logo creation using modern digital tools.', 'https://images.unsplash.com/photo-1506084868230-bb9d95c24759', 'Design', 'intermediate', 'English', 13.00, 22.00, 'Basic design tools', 'Design clean, scalable, memorable logos.', 'design, branding, logo', '2025-03-10', '2025-05-20', 'cohort', 'published', 140, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(104, 42, 'Network Security Essentials', 'Understand firewalls, IDS/IPS, VPNs, and cyber defense strategies.', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', 'Networking', 'intermediate', 'English', 16.00, 35.00, 'Basic networking', 'Configure secure networks and intrusion defenses.', 'network security, firewall', '2025-04-01', '2025-06-20', 'self-paced', 'published', 200, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:57:32'),
+(105, 43, 'Deep Learning Image Classification', 'Train CNNs for image classification using TensorFlow.', 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f', 'AI', 'advanced', 'English', 15.00, 45.00, 'ML basics', 'Build and train convolutional neural networks.', 'cnn, image recognition, ai', '2025-04-15', '2025-07-10', 'cohort', 'published', 120, 75.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(106, 44, 'Kotlin Multiplatform Development', 'Build multiplatform apps for Android, iOS, and desktop.', 'https://images.unsplash.com/photo-1587620962725-abab7fe55159', 'Mobile Development', 'advanced', 'English', 16.00, 50.00, 'Kotlin basics', 'Build KMP shared modules and UI layers.', 'kotlin, multiplatform, mobile', '2025-05-01', '2025-08-01', 'self-paced', 'published', 140, 75.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(107, 45, 'Financial Modeling & Forecasting', 'Learn forecasting, trend analysis, and budget modeling techniques.', 'https://images.unsplash.com/photo-1521791136064-7986c2920216', 'Finance', 'advanced', 'English', 15.00, 40.00, 'Basic finance', 'Create financial models using data analysis.', 'finance, forecasting', '2025-03-18', '2025-06-25', 'cohort', 'published', 160, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(108, 40, 'Modern HTML & CSS Mastery', 'Learn advanced CSS layouts, Flexbox, Grid, animations, and responsive design.', 'https://images.unsplash.com/photo-1522199710521-72d69614c702', 'Web Development', 'beginner', 'English', 12.00, 15.00, 'Basic HTML', 'Build modern responsive websites.', 'html, css, frontend', '2025-03-05', '2025-05-10', 'self-paced', 'published', 180, 60.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(109, 41, 'Digital Illustration for Beginners', 'Master digital art fundamentals using Procreate and Illustrator.', 'https://images.unsplash.com/photo-1503387762-592deb58ef4e', 'Design', 'beginner', 'English', 12.00, 18.00, 'None', 'Create illustrations, concept art, and digital sketches.', 'illustration, art', '2025-02-28', '2025-04-20', 'self-paced', 'published', 150, 60.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(110, 42, 'IT Support & Helpdesk Essentials', 'Learn troubleshooting, ticket systems, OS maintenance, and user support.', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c', 'IT', 'beginner', 'English', 13.00, 12.00, 'None', 'Provide professional technical support services.', 'helpdesk, IT support', '2025-03-12', '2025-05-30', 'cohort', 'published', 250, 65.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:57:42'),
+(111, 43, 'Python Automation & Scripting', 'Automate tasks, file handling, and workflows using Python.', 'https://images.unsplash.com/photo-1555949963-aa79dcee981c', 'Programming', 'intermediate', 'English', 14.00, 25.00, 'Basic Python', 'Write automation scripts and task runners.', 'python, automation', '2025-03-20', '2025-06-01', 'self-paced', 'published', 200, 70.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34'),
+(112, 44, 'IoT Fundamentals with Arduino', 'Learn how IoT devices communicate and interact using Arduino boards.', 'https://images.unsplash.com/photo-1518770660439-4636190af475', 'IoT', 'beginner', 'English', 12.00, 20.00, 'None', 'Build simple IoT prototypes and sensors.', 'iot, arduino, electronics', '2025-04-01', '2025-06-20', 'cohort', 'published', 180, 65.00, 0.00, 0, '2025-12-04 12:52:34', '2025-12-04 12:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enrollments`
+--
+
+CREATE TABLE `enrollments` (
+  `enroll_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `progress_percent` decimal(5,2) DEFAULT 0.00,
+  `status` enum('active','completed','dropped') DEFAULT 'active',
+  `enrolled_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `completed_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `enrollments`
+--
+
+INSERT INTO `enrollments` (`enroll_id`, `user_id`, `course_id`, `progress_percent`, `status`, `enrolled_at`, `completed_at`) VALUES
+(1, 27, 108, 0.00, 'active', '2025-12-07 12:50:09', NULL),
+(2, 27, 102, 0.00, 'active', '2025-12-07 13:03:04', NULL),
+(3, 27, 96, 0.00, 'active', '2025-12-07 13:03:35', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forums`
+--
+
+CREATE TABLE `forums` (
+  `forum_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_replies`
+--
+
+CREATE TABLE `forum_replies` (
+  `reply_id` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `is_solution` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_threads`
+--
+
+CREATE TABLE `forum_threads` (
+  `thread_id` int(11) NOT NULL,
+  `forum_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(300) NOT NULL,
+  `content` text NOT NULL,
+  `is_pinned` tinyint(1) DEFAULT 0,
+  `is_locked` tinyint(1) DEFAULT 0,
+  `view_count` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lessons`
+--
+
+CREATE TABLE `lessons` (
+  `lesson_id` int(11) NOT NULL,
+  `module_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `content_type` enum('video','pdf','text','quiz') NOT NULL,
+  `content_url` varchar(500) DEFAULT NULL,
+  `content_text` longtext DEFAULT NULL,
+  `duration_minutes` int(11) DEFAULT NULL,
+  `order_index` int(11) DEFAULT 0,
+  `is_published` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lesson_progress`
+--
+
+CREATE TABLE `lesson_progress` (
+  `progress_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL,
+  `is_completed` tinyint(1) DEFAULT 0,
+  `completed_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules`
+--
+
+CREATE TABLE `modules` (
+  `module_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `order_index` int(11) DEFAULT 0,
+  `is_published` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `modules`
+--
+
+INSERT INTO `modules` (`module_id`, `course_id`, `title`, `description`, `order_index`, `is_published`, `created_at`) VALUES
+(1, 57, 'basics of python', 'basics 0f python', 1, 0, '2025-12-04 14:21:34'),
+(2, 47, 'python', 'basics of python', 1, 0, '2025-12-04 14:28:41'),
+(3, 56, 'project management profession', 'how to manage your project', 1, 0, '2025-12-04 15:33:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `notif_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `message` text NOT NULL,
+  `type` enum('info','success','warning','error','grade','deadline','announcement') DEFAULT 'info',
+  `link` varchar(500) DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `sent_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `q_id` int(11) NOT NULL,
+  `quiz_id` int(11) NOT NULL,
+  `question_text` text NOT NULL,
+  `question_type` enum('multiple_choice','true_false','short_answer') NOT NULL,
+  `options_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`options_json`)),
+  `correct_answer` text DEFAULT NULL,
+  `points` decimal(5,2) DEFAULT 1.00,
+  `order_index` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quizzes`
+--
+
+CREATE TABLE `quizzes` (
+  `quiz_id` int(11) NOT NULL,
+  `lesson_id` int(11) DEFAULT NULL,
+  `course_id` int(11) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `description` text DEFAULT NULL,
+  `duration_minutes` int(11) DEFAULT 30,
+  `passing_score` decimal(5,2) DEFAULT 60.00,
+  `max_attempts` int(11) DEFAULT 3,
+  `shuffle_questions` tinyint(1) DEFAULT 1,
+  `is_published` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_answers`
+--
+
+CREATE TABLE `quiz_answers` (
+  `answer_id` int(11) NOT NULL,
+  `attempt_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `answer_text` text DEFAULT NULL,
+  `is_correct` tinyint(1) DEFAULT NULL,
+  `points_earned` decimal(5,2) DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_attempts`
+--
+
+CREATE TABLE `quiz_attempts` (
+  `attempt_id` int(11) NOT NULL,
+  `quiz_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `started_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ended_at` timestamp NULL DEFAULT NULL,
+  `score` decimal(6,2) DEFAULT NULL,
+  `total_points` decimal(6,2) DEFAULT NULL,
+  `percentage` decimal(5,2) DEFAULT NULL,
+  `passed` tinyint(1) DEFAULT 0,
+  `time_spent_seconds` int(11) DEFAULT NULL,
+  `is_suspicious` tinyint(1) DEFAULT 0,
+  `suspicious_reason` text DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submissions`
+--
+
+CREATE TABLE `submissions` (
+  `sub_id` int(11) NOT NULL,
+  `assign_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `file_url` varchar(500) DEFAULT NULL,
+  `text_content` text DEFAULT NULL,
+  `score` decimal(6,2) DEFAULT NULL,
+  `feedback` text DEFAULT NULL,
+  `status` enum('submitted','graded','returned') DEFAULT 'submitted',
+  `plagiarism_score` decimal(5,2) DEFAULT NULL,
+  `plagiarism_flag` tinyint(1) DEFAULT 0,
+  `submitted_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `graded_at` timestamp NULL DEFAULT NULL,
+  `graded_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `system_settings`
+--
+
+CREATE TABLE `system_settings` (
+  `setting_id` int(11) NOT NULL,
+  `setting_key` varchar(100) NOT NULL,
+  `setting_value` text DEFAULT NULL,
+  `description` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `system_settings`
+--
+
+INSERT INTO `system_settings` (`setting_id`, `setting_key`, `setting_value`, `description`) VALUES
+(1, 'site_name', 'Learning Management System', 'Name of the learning platform'),
+(2, 'max_file_upload_mb', '50', 'Maximum file upload size in MB'),
+(3, 'plagiarism_threshold', '70', 'Plagiarism detection threshold percentage'),
+(4, 'maintenance_mode', 'off', 'Enable or disable the entire system for maintenance'),
+(5, 'default_language', 'en', 'Default system language'),
+(6, 'default_theme', 'light', 'Default UI theme for new users'),
+(7, 'smtp_enabled', '1', 'Enable email sending via SMTP'),
+(10, 'smtp_encryption', 'tls', 'SMTP encryption method'),
+(12, 'session_timeout_minutes', '60', 'User session expiration time in minutes'),
+(13, 'allow_public_course_access', '0', 'Allow visitors to view public courses without login'),
+(14, 'auto_enrollment', '0', 'Automatically enroll students into assigned courses'),
+(15, 'max_login_attempts', '5', 'Maximum number of failed login attempts'),
+(16, 'account_lock_minutes', '30', 'Duration for which an account remains locked after failed attempts'),
+(17, 'enable_notifications', '1', 'Enable system-wide notifications'),
+(18, 'enable_two_factor_auth', '0', 'Enable 2-factor authentication for login'),
+(19, 'system_timezone', 'Africa/Kigali', 'Default timezone for system operations'),
+(20, 'default_avatar_url', 'https://cdn.lms.edu/default-avatar.png', 'Fallback avatar used for new accounts'),
+(21, 'backup_schedule', 'daily', 'Automatic database backup frequency'),
+(22, 'analytics_tracking', '1', 'Enable LMS usage analytics tracking'),
+(23, 'support_email', 'support@lms.edu', 'Official LMS support email address');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('student','instructor','admin') NOT NULL DEFAULT 'student',
+  `avatar_url` varchar(255) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
+  `institution` varchar(150) DEFAULT NULL,
+  `language_preference` varchar(10) DEFAULT 'en',
+  `theme_preference` enum('light','dark') DEFAULT 'light',
+  `is_active` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `last_login` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`, `avatar_url`, `bio`, `institution`, `language_preference`, `theme_preference`, `is_active`, `created_at`, `updated_at`, `last_login`) VALUES
+(20, 'John Doe', 'john.doe@lms.edu', '$2y$10$LRms5/testHASHabc123', 'instructor', 'https://randomuser.me/api/portraits/men/10.jpg', 'Experienced web development instructor with a focus on modern JavaScript frameworks.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(21, 'Mary Smith', 'mary.smith@lms.edu', '$2y$10$LRms5/testHASHabc123', 'instructor', 'https://randomuser.me/api/portraits/women/21.jpg', 'Senior instructor specializing in backend development and PHP frameworks.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(22, 'Alice Johnson', 'alice.j@lms.edu', '$2y$10$LRms5/testHASHabc123', 'student', 'https://randomuser.me/api/portraits/women/22.jpg', 'Dedicated student with strong interest in mobile app development.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(23, 'Brian Clarke', 'brian.c@lms.edu', '$2y$10$LRms5/testHASHabc123', 'student', 'https://randomuser.me/api/portraits/men/23.jpg', 'Student passionate about database systems and logical problem solving.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(24, 'Christine Omar', 'christine.o@lms.edu', '$2y$10$LRms5/testHASHabc123', 'student', 'https://randomuser.me/api/portraits/women/24.jpg', 'Creative student with a focus on UI/UX and digital design.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(25, 'Danny Frost', 'danny.f@lms.edu', '$2y$10$LRms5/testHASHabc123', 'student', 'https://randomuser.me/api/portraits/men/25.jpg', 'Motivated learner exploring programming fundamentals and software design.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(26, 'Ella Wayne', 'ella.w@lms.edu', '$2y$10$LRms5/testHASHabc123', 'student', 'https://randomuser.me/api/portraits/women/26.jpg', 'Passionate student exploring new technologies and data analytics.', 'LMS University', 'en', 'light', 1, '2025-12-03 19:19:26', '2025-12-04 12:42:19', NULL),
+(27, 'SHEMA ARAFATI HATEGEKIMANA', 'shemaarafati26@gmail.com', '$2y$10$z37HO7N8CvXhvVa3Lwt5FOPTUd3zcnXZ8mKDX95g9lZYm3/ov.842', 'student', 'https://randomuser.me/api/portraits/men/27.jpg', 'Aspiring software engineer with strong interest in database and network systems.', 'RP Karongi College', 'en', 'light', 1, '2025-12-03 19:28:07', '2025-12-08 11:34:49', '2025-12-08 11:34:49'),
+(30, 'hirwa edison', 'shemaarafati69@gmail.com', '$2y$10$Ecb2Poec8s.F7WzfiLmuEu4OxM5q5T241e7PNhPPuIPBE36sIWB6C', 'instructor', '/learning%20management%20system/backend/uploads/avatars/69318d04585dc_1764855044.jpg', 'Instructor specializing in network engineering and troubleshooting.', 'RP Karongi College', 'en', 'light', 1, '2025-12-03 19:44:27', '2025-12-08 11:35:38', '2025-12-08 11:35:38'),
+(31, 'sangwa josephat', 'shemaarafati940@gmail.com', '$2y$10$DyuN3VkqFcccOxpGDxCN1OdbtMCZkyTybxUcbi9uYm0Td5F/q1.8a', 'admin', '/learning%20management%20system/backend/uploads/avatars/69318879548c3_1764853881.jpg', 'Admin overseeing course management, student enrollment, and platform stability.', 'RP Karongi College', 'en', 'light', 1, '2025-12-03 19:46:15', '2025-12-08 11:32:49', '2025-12-08 11:32:49'),
+(40, 'Mugisha Emmanuel', 'mugisha.emmanuel@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/men/40.jpg', 'Instructor specializing in web development and modern JavaScript frameworks.', 'RP Karongi College', 'en', 'light', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:26', NULL),
+(41, 'Mukandayisenga Clarisse', 'clarisse.mukandayisenga@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/women/41.jpg', 'Instructor experienced in UI/UX design, prototyping, and user-centered design.', 'RP Karongi College', 'en', '', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:41', NULL),
+(42, 'Ndayishimiye Patrick', 'patrick.ndayishimiye@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/men/42.jpg', 'Cybersecurity instructor focusing on ethical hacking and network defense.', 'RP Karongi College', 'en', 'light', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:26', NULL),
+(43, 'Uwase Aline', 'aline.uwase@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/women/43.jpg', 'AI and Machine Learning instructor with experience in data modeling and neural networks.', 'RP Karongi College', 'en', '', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:41', NULL),
+(44, 'Habimana Eric', 'eric.habimana@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/men/44.jpg', 'Instructor specializing in Android development, Kotlin, and mobile architecture.', 'RP Karongi College', 'en', 'light', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:26', NULL),
+(45, 'Iradukunda Ange', 'ange.iradukunda@lms.rp', '$2y$10$J2YhsdfJ3Fs9e1HSAhdc123', 'instructor', 'https://randomuser.me/api/portraits/women/45.jpg', 'Business and data analytics instructor with a focus on financial modeling and reporting.', 'RP Karongi College', 'en', '', 1, '2025-12-04 12:47:26', '2025-12-04 12:47:41', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`assign_id`),
+  ADD KEY `idx_course` (`course_id`);
+
+--
+-- Indexes for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  ADD PRIMARY KEY (`log_id`),
+  ADD KEY `idx_user` (`user_id`),
+  ADD KEY `idx_action` (`action`);
+
+--
+-- Indexes for table `certificates`
+--
+ALTER TABLE `certificates`
+  ADD PRIMARY KEY (`cert_id`),
+  ADD UNIQUE KEY `certificate_number` (`certificate_number`),
+  ADD UNIQUE KEY `unique_cert` (`user_id`,`course_id`),
+  ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_id`),
+  ADD KEY `idx_instructor` (`instructor_id`),
+  ADD KEY `idx_status` (`status`),
+  ADD KEY `idx_category` (`category`),
+  ADD KEY `idx_level` (`level`);
+
+--
+-- Indexes for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD PRIMARY KEY (`enroll_id`),
+  ADD UNIQUE KEY `unique_enrollment` (`user_id`,`course_id`),
+  ADD KEY `idx_user` (`user_id`),
+  ADD KEY `idx_course` (`course_id`);
+
+--
+-- Indexes for table `forums`
+--
+ALTER TABLE `forums`
+  ADD PRIMARY KEY (`forum_id`),
+  ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `forum_replies`
+--
+ALTER TABLE `forum_replies`
+  ADD PRIMARY KEY (`reply_id`),
+  ADD KEY `thread_id` (`thread_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `forum_threads`
+--
+ALTER TABLE `forum_threads`
+  ADD PRIMARY KEY (`thread_id`),
+  ADD KEY `forum_id` (`forum_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD PRIMARY KEY (`lesson_id`),
+  ADD KEY `idx_module` (`module_id`);
+
+--
+-- Indexes for table `lesson_progress`
+--
+ALTER TABLE `lesson_progress`
+  ADD PRIMARY KEY (`progress_id`),
+  ADD UNIQUE KEY `unique_progress` (`user_id`,`lesson_id`),
+  ADD KEY `lesson_id` (`lesson_id`);
+
+--
+-- Indexes for table `modules`
+--
+ALTER TABLE `modules`
+  ADD PRIMARY KEY (`module_id`),
+  ADD KEY `idx_course` (`course_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notif_id`),
+  ADD KEY `idx_user` (`user_id`),
+  ADD KEY `idx_read` (`is_read`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`q_id`),
+  ADD KEY `idx_quiz` (`quiz_id`);
+
+--
+-- Indexes for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  ADD PRIMARY KEY (`quiz_id`),
+  ADD KEY `lesson_id` (`lesson_id`),
+  ADD KEY `idx_course` (`course_id`);
+
+--
+-- Indexes for table `quiz_answers`
+--
+ALTER TABLE `quiz_answers`
+  ADD PRIMARY KEY (`answer_id`),
+  ADD KEY `attempt_id` (`attempt_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `quiz_attempts`
+--
+ALTER TABLE `quiz_attempts`
+  ADD PRIMARY KEY (`attempt_id`),
+  ADD KEY `idx_quiz` (`quiz_id`),
+  ADD KEY `idx_student` (`student_id`);
+
+--
+-- Indexes for table `submissions`
+--
+ALTER TABLE `submissions`
+  ADD PRIMARY KEY (`sub_id`),
+  ADD KEY `graded_by` (`graded_by`),
+  ADD KEY `idx_assignment` (`assign_id`),
+  ADD KEY `idx_student` (`student_id`);
+
+--
+-- Indexes for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  ADD PRIMARY KEY (`setting_id`),
+  ADD UNIQUE KEY `setting_key` (`setting_key`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idx_email` (`email`),
+  ADD KEY `idx_role` (`role`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `assign_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `certificates`
+--
+ALTER TABLE `certificates`
+  MODIFY `cert_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
+--
+-- AUTO_INCREMENT for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  MODIFY `enroll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `forums`
+--
+ALTER TABLE `forums`
+  MODIFY `forum_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `forum_replies`
+--
+ALTER TABLE `forum_replies`
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `forum_threads`
+--
+ALTER TABLE `forum_threads`
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lessons`
+--
+ALTER TABLE `lessons`
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lesson_progress`
+--
+ALTER TABLE `lesson_progress`
+  MODIFY `progress_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `modules`
+--
+ALTER TABLE `modules`
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `quiz_answers`
+--
+ALTER TABLE `quiz_answers`
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `quiz_attempts`
+--
+ALTER TABLE `quiz_attempts`
+  MODIFY `attempt_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `submissions`
+--
+ALTER TABLE `submissions`
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `audit_logs`
+--
+ALTER TABLE `audit_logs`
+  ADD CONSTRAINT `audit_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `certificates`
+--
+ALTER TABLE `certificates`
+  ADD CONSTRAINT `certificates_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `certificates_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD CONSTRAINT `enrollments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forums`
+--
+ALTER TABLE `forums`
+  ADD CONSTRAINT `forums_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forum_replies`
+--
+ALTER TABLE `forum_replies`
+  ADD CONSTRAINT `forum_replies_ibfk_1` FOREIGN KEY (`thread_id`) REFERENCES `forum_threads` (`thread_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forum_replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forum_threads`
+--
+ALTER TABLE `forum_threads`
+  ADD CONSTRAINT `forum_threads_ibfk_1` FOREIGN KEY (`forum_id`) REFERENCES `forums` (`forum_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forum_threads_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD CONSTRAINT `lessons_ibfk_1` FOREIGN KEY (`module_id`) REFERENCES `modules` (`module_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `lesson_progress`
+--
+ALTER TABLE `lesson_progress`
+  ADD CONSTRAINT `lesson_progress_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `lesson_progress_ibfk_2` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`lesson_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `modules`
+--
+ALTER TABLE `modules`
+  ADD CONSTRAINT `modules_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`quiz_id`) REFERENCES `quizzes` (`quiz_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  ADD CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`lesson_id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `quizzes_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quiz_answers`
+--
+ALTER TABLE `quiz_answers`
+  ADD CONSTRAINT `quiz_answers_ibfk_1` FOREIGN KEY (`attempt_id`) REFERENCES `quiz_attempts` (`attempt_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `quiz_answers_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`q_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quiz_attempts`
+--
+ALTER TABLE `quiz_attempts`
+  ADD CONSTRAINT `quiz_attempts_ibfk_1` FOREIGN KEY (`quiz_id`) REFERENCES `quizzes` (`quiz_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `quiz_attempts_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `submissions`
+--
+ALTER TABLE `submissions`
+  ADD CONSTRAINT `submissions_ibfk_1` FOREIGN KEY (`assign_id`) REFERENCES `assignments` (`assign_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `submissions_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `submissions_ibfk_3` FOREIGN KEY (`graded_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
