@@ -8,6 +8,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
+// Configure session security before starting
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) ? 1 : 0);
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.use_strict_mode', 1);
+ini_set('session.gc_maxlifetime', 3600); // 1 hour session lifetime
+
 // Start session
 session_start();
 
