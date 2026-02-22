@@ -53,6 +53,17 @@ $resource = $segments[0] ?? '';
 $id = $segments[1] ?? null;
 $action = $segments[2] ?? null;
 
+// Validate resource name (prevent path traversal / injection)
+if ($resource && !preg_match('/^[a-z][a-z0-9-]*$/', $resource)) {
+    Response::error('Invalid endpoint', 400);
+}
+
+// Validate ID parameter (must be numeric or a known action keyword)
+$actionKeywords = ['my-courses', 'my-enrollments', 'categories', 'enroll', 'drop', 'check', 'course', 'list', 'reorder', 'stats', 'me'];
+if ($id !== null && !is_numeric($id) && !in_array($id, $actionKeywords)) {
+    Response::error('Invalid resource identifier', 400);
+}
+
 // Route to appropriate controller
 try {
     switch ($resource) {
