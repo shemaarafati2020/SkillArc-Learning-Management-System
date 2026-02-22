@@ -2,12 +2,33 @@
 /**
  * Database Configuration and Connection
  * Learning Management System
+ * 
+ * Credentials are loaded from environment variables.
+ * Copy .env.example to .env and set your values.
  */
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'lms_db');
+// Load environment variables from .env file if it exists
+$envFile = __DIR__ . '/../../.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') === false) continue;
+        list($key, $value) = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        // Remove surrounding quotes
+        $value = trim($value, '"\'');
+        if (!getenv($key)) {
+            putenv("$key=$value");
+        }
+    }
+}
+
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'lms_db');
 
 class Database {
     private static $instance = null;
@@ -17,9 +38,11 @@ class Database {
         $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         
         if ($this->connection->connect_error) {
+            // Log the actual error server-side, never expose to client
+            error_log('Database connection failed: ' . $this->connection->connect_error);
             die(json_encode([
                 'success' => false,
-                'message' => 'Database connection failed: ' . $this->connection->connect_error
+                'message' => 'Database connection failed. Please try again later.'
             ]));
         }
         
@@ -41,7 +64,8 @@ class Database {
         $stmt = $this->connection->prepare($sql);
         
         if (!$stmt) {
-            return ['error' => $this->connection->error];
+            error_log('SQL prepare error: ' . $this->connection->error);
+            return ['error' => 'A database error occurred'];
         }
         
         if (!empty($params)) {
