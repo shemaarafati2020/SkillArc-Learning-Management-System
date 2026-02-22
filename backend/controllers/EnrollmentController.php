@@ -117,32 +117,25 @@ class EnrollmentController {
         
         $data = json_decode(file_get_contents('php://input'), true);
         
-        // Log the incoming request for debugging
-        error_log("Enrollment attempt - User ID: " . Auth::id() . ", Data: " . json_encode($data));
         
         if (!isset($data['course_id'])) {
-            error_log("Enrollment failed: Course ID not provided");
             Response::error('Course ID required', 400);
         }
 
         $courseId = (int)$data['course_id'];
-        error_log("Attempting to enroll in course ID: " . $courseId);
         
         $course = $this->courseModel->findById($courseId);
         
         if (!$course) {
-            error_log("Enrollment failed: Course $courseId not found");
             Response::notFound('Course not found');
         }
 
         if ($course['status'] !== 'published') {
-            error_log("Enrollment failed: Course $courseId not published (status: {$course['status']})");
             Response::error('Course is not available for enrollment', 400);
         }
 
         // Check if already enrolled
         if ($this->enrollmentModel->isEnrolled(Auth::id(), $courseId)) {
-            error_log("Enrollment failed: User " . Auth::id() . " already enrolled in course $courseId");
             Response::error('Already enrolled in this course', 400);
         }
 
@@ -150,7 +143,6 @@ class EnrollmentController {
         if ($course['max_students']) {
             $enrollments = $this->enrollmentModel->findByCourse($courseId);
             if (count($enrollments) >= $course['max_students']) {
-                error_log("Enrollment failed: Course $courseId is full");
                 Response::error('Course is full', 400);
             }
         }
@@ -158,13 +150,11 @@ class EnrollmentController {
         $enrollId = $this->enrollmentModel->create(Auth::id(), $courseId);
         
         if ($enrollId) {
-            error_log("Enrollment successful: Enroll ID $enrollId for user " . Auth::id() . " in course $courseId");
             AuditLog::createLog('enrollments', $enrollId, ['user_id' => Auth::id(), 'course_id' => $courseId]);
             $enrollment = $this->enrollmentModel->findById($enrollId);
             Response::success($enrollment, 'Enrolled successfully', 201);
         }
         
-        error_log("Enrollment failed: Database error for user " . Auth::id() . " in course $courseId");
         Response::error('Failed to enroll', 500);
     }
 
